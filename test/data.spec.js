@@ -1,4 +1,4 @@
-require('../src/data.js');
+require('../src/JavaScript/data.js');
 
 
 describe('example', () => {
