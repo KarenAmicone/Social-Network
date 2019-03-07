@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Picfood</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale= 1.0, minimum-scale= 1.0">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./CSS/index.css">
   <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -13,9 +13,13 @@
 </head>
 
 <body>
-  <h1>Welcome to My Awesome App</h1>
-  <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
+  <main class="container">
+    <img src="./images/logo.png" alt="">
+    <article id="firebaseui-auth-container"></article>
+    <article id="loader">Loading...</article>
+  </main>
+
+
   <script src="./JavaScript/firebase_docs/firebase.js"></script>
   <script src="./JavaScript/index.js"></script>
 </body>
