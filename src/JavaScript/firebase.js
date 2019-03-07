@@ -1,4 +1,3 @@
-
   // Initialize Firebase
   var app_fireBase= {};
   (function (){
