@@ -4,7 +4,6 @@ var mainApp = {};
   var firebase = app_fireBase;
   var uid = null;
   firebase.auth().onAuthStateChanged((user) => {
-    console.log("User", user)
     if (user) {
       // User is signed in.
       uid = user.uid;
