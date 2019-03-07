@@ -1,5 +1,3 @@
-let firebase, firebaseui;
-
 // var provider = new firebase.auth.FacebookAuthProvider();
 // provider = new firebase.auth.GoogleAuthProvider();
 
