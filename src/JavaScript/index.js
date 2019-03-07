@@ -1,5 +1,7 @@
-var provider = new firebase.auth.FacebookAuthProvider();
-var provider = new firebase.auth.GoogleAuthProvider();
+let firebase, firebaseui;
+
+// var provider = new firebase.auth.FacebookAuthProvider();
+// provider = new firebase.auth.GoogleAuthProvider();
 
 
 (function () {
