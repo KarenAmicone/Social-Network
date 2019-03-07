@@ -1,12 +1,14 @@
-var provider = new firebase.auth.FacebookAuthProvider();
-var provider = new firebase.auth.GoogleAuthProvider();
+let firebase, firebaseui;
+
+// var provider = new firebase.auth.FacebookAuthProvider();
+// provider = new firebase.auth.GoogleAuthProvider();
 
 
 (function(){
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     var uiConfig = {
         callbacks: {
-          signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          signInSuccessWithAuthResult: function(/*/authResult, redirectUrl */) {
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
             // or whether we leave that to developer to handle.
