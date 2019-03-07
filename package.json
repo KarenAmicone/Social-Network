@@ -5,7 +5,7 @@
   "main": "src/index.html",
   "scripts": {
     "htmlhint": "htmlhint src/*.html test/*.html",
-    "eslint": "eslint --ext .js src/ test/",
+    "eslint": "eslint --ext .js src/",
     "pretest": "npm run eslint && npm run htmlhint",
     "test": "jest --coverage"
   },
