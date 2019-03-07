@@ -1,7 +1,3 @@
-// var provider = new firebase.auth.FacebookAuthProvider();
-// provider = new firebase.auth.GoogleAuthProvider();
-
-
 (function () {
   firebase.auth().onAuthStateChanged((user) => {
     if(user){
