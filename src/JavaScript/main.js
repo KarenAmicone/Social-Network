@@ -17,7 +17,7 @@ const container= document.getElementById("container");
   });
   
   const print= (user)=>{
-    const userName = `<p>¡Hola, ${user.displayName}!</p>`;
+    const userName = `<p>${user.displayName}</p>`;
     container.insertAdjacentHTML("beforeend", userName);
   }
 
