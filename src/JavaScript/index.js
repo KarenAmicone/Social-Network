@@ -1,3 +1,6 @@
+var ref = new firebase.auth.GoogleAuthProvider();
+var ref = new firebase.auth.FacebookAuthProvider();
+
 (function () {
   firebase.auth().onAuthStateChanged((user) => {
     if(user){
