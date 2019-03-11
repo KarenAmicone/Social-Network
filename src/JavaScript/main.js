@@ -6,6 +6,10 @@ const update = document.getElementById('update');
 const delate = document.getElementById('delete');
 const read = document.getElementById('read');
 const mantel = document.getElementById('mantel');
+const inputProfile = document.getElementById('input-profile');
+const outputProfile =document.getElementById("output-profile");
+
+outputProfile.style.display="none";
 
 (function () {
   var firebase = app_fireBase;
@@ -26,6 +30,15 @@ const mantel = document.getElementById('mantel');
     const userName = `<p>${user.displayName}</p>`;
     container.insertAdjacentHTML("beforeend", userName);
   }
+  const printProfile= (data)=>{
+   const profile = `<p>${data.favoriteFoods}</p> 
+   <p>${data.userDescriptions}</p>
+   <p>${data.birthdays}</p>
+   <p>${data.socialNetworks}</p> `;
+    outputProfile.insertAdjacentHTML("beforeend",profile);
+ 
+  }
+  
 
   function logOut() {
     firebase.auth().signOut();
@@ -38,22 +51,41 @@ const mantel = document.getElementById('mantel');
       console.log("success")
     }
   }
+  const favoriteFood =document.getElementById ("favorite-food")
+  const userDescription =document.getElementById ("user-description")
+  const birthday =document.getElementById ("birthday")
+  const socialNetwork =document.getElementById ("social")
+  
 
-  function fnCreate (){
+ function fnCreate (){
     var path = 'users/' + uid;
     var data = {
-      name: 'Diana',
-      age: 22,
+      favoriteFoods:favoriteFood.value,
+      
+      userDescriptions:userDescription.value,
+      birthdays:birthday.value,
+      socialNetworks:socialNetwork.value,
       message: 'Hola chicas!!'      
     }
+    console.log(data);
     app_fireBase.databaseApi.create(path, data, messageHandler);  
+    
+    
+    printProfile(data);
+    inputProfile.style.display="none";
+    outputProfile.style.display="block";
+   
   }
   function fnRead (){
     var path = 'users/' + uid;
     app_fireBase.databaseApi.read(path, successFn, messageHandler);
     function successFn (snapShot){
       if (!!snapShot && !!snapShot.val()){
-        mantel.innerHTML = `<p>${snapShot.val().name}</p>`;
+        favoriteFood.value=snapShot.val().favoriteFoods
+        userDescription.value=snapShot.val().userDescriptions;
+        birthday.value=snapShot.val().birthdays;
+        socialNetwork.value=snapShot.val().socialNetworks; 
+        
         console.log(snapShot.val());
       }else{
         console.log('No data Found');
@@ -63,15 +95,20 @@ const mantel = document.getElementById('mantel');
   function fnUpdate (){
     var path = 'users/' + uid;
     var data = {
-      age: 30,
-      message: 'Hola de nuevo chicas!!'      
+      favoriteFoods:favoriteFood.value,
+      userDescriptions:userDescription.value,
+      birthdays:birthday.value,
+      socialNetworks:socialNetwork.value,
+      message: 'adios chicas!!'     
     }
     app_fireBase.databaseApi.update(path, data, messageHandler);
+    printProfile(data);
   }
   function fnDelete (){
     var path = 'users/' + uid;      
     app_fireBase.databaseApi.delete(path, messageHandler);
   }
+  
   
   mainApp.Create = fnCreate;
   mainApp.Read = fnRead;
@@ -80,7 +117,7 @@ const mantel = document.getElementById('mantel');
   mainApp.logOut = logOut;
   
   logOutButton.addEventListener("click", logOut);
-  create.addEventListener('click', mainApp.Create);
+  create.addEventListener('click', mainApp.Create );
   update.addEventListener('click', mainApp.Update);
   delate.addEventListener('click', mainApp.Delete);
   read.addEventListener('click', mainApp.Read);
