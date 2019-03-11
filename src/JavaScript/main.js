@@ -15,6 +15,7 @@ const mantel = document.getElementById('mantel');
       // User is signed in.
       uid = user.uid;
       print(user);
+      console.log(user);
     } else {
       uid = null;
       window.location.replace("index.html");
@@ -37,8 +38,6 @@ const mantel = document.getElementById('mantel');
       console.log("success")
     }
   }
-
-  
 
   function fnCreate (){
     var path = 'users/' + uid;
