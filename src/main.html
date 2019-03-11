@@ -9,33 +9,52 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" media="screen" href="./CSS/style.css" />
+  <link rel="shortcut icon" href= "./images/picfood2.png">
   <title>Picfood</title>
 
 </head>
 
 <body>
     <main>
-      <button id="create">Create</button>
-      <button id="read">Read</button>
-      <button id="update">Update</button>
-      <button id="delete">Delete</button>
-    <article id="container" class="container">
-      <img src="./images/logo.png" alt="">
-      <a id="logout" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">exit_to_app</i></a>
-    </article>
+    <header>
+        <article id="container" class="container">
+      
+            <img src="./images/picfood2.png" alt="">
+            <a id="logout" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">exit_to_app</i></a>
+          </article>
+    </header>
+      
+   
 
     <div class="col s12 m7">
       <div class="card horizontal">
         <div class="card-image">
-          <img src="./images/13087245_10154859858314922_4950851451004564887_o.jpg">
+          <img src="./images/picfood.png">
         </div>
         <div class="card-stacked">
-          <div class="card-content">
-            <p>Me gustan las fotos de comida :D</p>
+          <div class="card-content" id="input-profile">
+            <h3>Descripción</h3>
+            <input type="text" id="favorite-food" placeholder="Mi comida favorita es ...">
+            <input type="text" id="user-description" placeholder="Acerca de mi.....">
+            <label for="">Cumpleaños</label>
+            <input type="date" id="birthday">
+            <label for="">Mis Redes Sociales</label>
+            <input type="url" id="social">
+            <button id="create">Guardar</button>
+            
           </div>
+          <div id="output-profile"  > 
+            <button id="read">Editar Perfil</button>
+            <button id="update">Guardar</button>
+          </div>
+          
         </div>
       </div>
     </div>
+
+    
+      
+      <button id="delete">Delete</button>
 
     <article id="mantel">
      <!--  <figure class="foto1">

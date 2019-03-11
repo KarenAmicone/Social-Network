@@ -1,5 +1,6 @@
 // Initialize Firebase
 var app_fireBase = {};
+
   (function (){
     var config = {
         apiKey: "AIzaSyDtx_GXUXDalpCmPGu0-jiGCX36HhWC-pE",
@@ -31,6 +32,12 @@ var app_fireBase = {};
         if(!path) return;
         app_fireBase.database().ref(path).remove(callback);
       }
+      function writeUserData (path,callback){
+        if(!path) return;
+        app_fireBase.database().ref(path).set(callback);
+
+      }
+      
 
       app_fireBase.databaseApi = {
         create: fnCreate,
@@ -38,4 +45,5 @@ var app_fireBase = {};
         update: fnUpdate,
         delete: fnDelete
       }
+
 })()
