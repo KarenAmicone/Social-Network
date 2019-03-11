@@ -19,6 +19,7 @@ outputProfile.style.display="none";
       // User is signed in.
       uid = user.uid;
       print(user);
+      console.log(user);
     } else {
       uid = null;
       window.location.replace("index.html");
