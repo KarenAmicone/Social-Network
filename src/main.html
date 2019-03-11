@@ -8,16 +8,78 @@
   <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="./CSS/style.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="./CSS/style.css" />
+  <link rel="shortcut icon" href= "./images/picfood2.png">
   <title>Picfood</title>
 
 </head>
 
 <body>
-<section id="container" class="container">
-  <h1>Picfood</h1>
-  <a id="logout" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">exit_to_app</i></a>
-</section>  
+    <main>
+    <header>
+        <article id="container" class="container">
+      
+            <img src="./images/picfood2.png" alt="">
+            <a id="logout" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">exit_to_app</i></a>
+          </article>
+    </header>
+      
+   
+
+    <div class="col s12 m7">
+      <div class="card horizontal">
+        <div class="card-image">
+          <img src="./images/picfood.png">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content" id="input-profile">
+            <h3>Descripción</h3>
+            <input type="text" id="favorite-food" placeholder="Mi comida favorita es ...">
+            <input type="text" id="user-description" placeholder="Acerca de mi.....">
+            <label for="">Cumpleaños</label>
+            <input type="date" id="birthday">
+            <label for="">Mis Redes Sociales</label>
+            <input type="url" id="social">
+            <button id="create">Guardar</button>
+            
+          </div>
+          <div id="output-profile"  > 
+            <button id="read">Editar Perfil</button>
+            <button id="update">Guardar</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    
+      
+      <button id="delete">Delete</button>
+
+    <article id="mantel">
+     <!--  <figure class="foto1">
+        <img src="./images/Plato_2.png">
+      </figure>
+      <figure class="foto2">
+        <img src="./images/Plato_2.png">
+      </figure>
+      <figure class="foto3">
+        <img src="./images/Plato_2.png">
+      </figure>
+      <figure class="foto4">
+        <img src="./images/Plato_2.png">
+      </figure>
+      <figure class="foto5">
+        <img src="./images/Plato_2.png">
+      </figure>
+      <figure class="foto6">
+        <img src="./images/Plato_2.png">
+      </figure> -->
+    </article>
+
+  </main>
+
+
   <script src="./JavaScript/firebase_docs/firebase.js"></script>
   <script src="./JavaScript/main.js"></script>
 </body>
