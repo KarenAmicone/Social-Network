@@ -5,27 +5,30 @@
   "main": "src/index.html",
   "scripts": {
     "htmlhint": "htmlhint src/*.html test/*.html",
-    "eslint": "eslint --ext .js src/ test/",
+    "eslint": "eslint --ext .js src/",
     "pretest": "npm run eslint && npm run htmlhint",
     "test": "jest --coverage"
   },
   "dependencies": {
+    "dotenv": "^6.2.0",
     "eslint": "^5.9.0",
     "eslint-plugin-jest": "^22.1.2",
+    "firebase-admin": "^7.0.0",
+    "firebase-functions": "^2.2.0",
     "htmlhint": "^0.10.1",
-    "jest": "^23.6.0"
+    "jest": "^24.1.0"
   },
   "directories": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DianaG-M/Social-Network.git"
+    "url": "git+https://github.com/KarenAmicone/Social-Network.git"
   },
   "author": "Fabiola,Karen,Diana",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DianaG-M/Social-Network/issues"
+    "url": "https://github.com/KarenAmicone/Social-Network/issues"
   },
-  "homepage": "https://github.com/DianaG-M/Social-Network#readme"
+  "homepage": "https://github.com/KarenAmicone/Social-Network#readme"
 }

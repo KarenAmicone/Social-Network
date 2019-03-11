@@ -1,16 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
-    <title>Document</title>
-   
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale= 1.0, minimum-scale= 1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./CSS/style.css" />
+  <title>Picfood</title>
+
 </head>
+
 <body>
-    <h1>Welcome</h1>
-    <script src="./JavaScript/firebase.js"></script>
-    <script src="./JavaScript/main.js"></script>    
+    <main>
+      <button id="create">Create</button>
+      <button id="read">Read</button>
+      <button id="update">Update</button>
+      <button id="delete">Delete</button>
+    <article id="container" class="container">
+      <img src="./images/logo.png" alt="">
+      <a id="logout" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">exit_to_app</i></a>
+    </article>
+
+    <div class="col s12 m7">
+      <div class="card horizontal">
+        <div class="card-image">
+          <img src="./images/13087245_10154859858314922_4950851451004564887_o.jpg">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>Me gustan las fotos de comida :D</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <article id="mantel">
+     <!--  <figure class="foto1">
+        <img src="./images/Plato_2.png">
+      </figure>
+      <figure class="foto2">
+        <img src="./images/Plato_2.png">
+      </figure>
+      <figure class="foto3">
+        <img src="./images/Plato_2.png">
+      </figure>
+      <figure class="foto4">
+        <img src="./images/Plato_2.png">
+      </figure>
+      <figure class="foto5">
+        <img src="./images/Plato_2.png">
+      </figure>
+      <figure class="foto6">
+        <img src="./images/Plato_2.png">
+      </figure> -->
+    </article>
+
+  </main>
+
+
+  <script src="./JavaScript/firebase_docs/firebase.js"></script>
+  <script src="./JavaScript/main.js"></script>
 </body>
+
 </html>

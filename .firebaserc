@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "fir-demo-project"
+    "Picfood": "picfood-a0a5a",
+    "default": "picfood-a0a5a",
+    "Pic-food": "picfood-a0a5a"
   }
 }
