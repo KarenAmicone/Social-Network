@@ -13,7 +13,7 @@ var app_fireBase = {};
       firebase.initializeApp(config);
       app_fireBase = firebase;
       
-      function submitToFirebase (path, body, callback){
+      function fnCreate (path, body, callback){
         if(!path || !body) return;
         app_fireBase.database().ref(path).set(body, callback);
       }
@@ -35,7 +35,7 @@ var app_fireBase = {};
       
 
       app_fireBase.databaseApi = {
-        create: submitToFirebase,
+        create: fnCreate,
         read: fnRead,
         update: fnUpdate,
         delete: fnDelete
