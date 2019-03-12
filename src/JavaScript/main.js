@@ -97,7 +97,7 @@ outputProfile.style.display='none';
         console.log(snapShot.val());
         inputProfile.removeChild(create);
         const btn= document.createElement('BUTTON');
-        const t = document.createTextNode('Save');
+        const t = document.createTextNode('Guardar');
         btn.appendChild(t);
         inputProfile.appendChild(btn);
         btn.addEventListener('click', mainApp.Update); 
@@ -119,6 +119,12 @@ outputProfile.style.display='none';
     app_fireBase.databaseApi.update(path, data, messageHandler);
     outputProfile.innerHTML="";
     printProfile(data);
+    const btnEdit= document.createElement('BUTTON');
+    const t = document.createTextNode('Editar');
+    btnEdit.appendChild(t);
+    outputProfile.appendChild(btnEdit);
+    btnEdit.addEventListener('click', mainApp.Read);
+
   };
 
   //Función para eliminar publicaciones
