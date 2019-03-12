@@ -15,6 +15,8 @@ const birthday =document.getElementById ('birthday');
 const socialNetwork =document.getElementById ('social');
 const pic = document.getElementById('pic');
 
+//var data= app_fireBase.database().ref('users/').push()
+
 //Display
 inputProfile.style.display='block';
 outputProfile.style.display='none';
@@ -38,7 +40,6 @@ outputProfile.style.display='none';
   const print= (user)=>{
     const userName = `<p>${user.displayName}</p>`;
     usersName.innerHTML=userName;
-
     pic.innerHTML = `<img src="${user.photoURL}">`
 
   };
@@ -71,7 +72,7 @@ outputProfile.style.display='none';
  //Función para crear publicación 
  function fnCreate (){
     var path = 'users/' + uid;
-    var data = {
+      var data = {
       favoriteFoods:favoriteFood.value,
       userDescriptions:userDescription.value,
       birthdays:birthday.value,
@@ -79,7 +80,6 @@ outputProfile.style.display='none';
     };
     console.log(data);
     app_fireBase.databaseApi.create(path, data, messageHandler);
-    
     printProfile(data);
   };
 
@@ -143,7 +143,7 @@ outputProfile.style.display='none';
   
   logOutButton.addEventListener('click', logOut);
   create.addEventListener('click', mainApp.Create );
-  update.addEventListener('click', mainApp.Update);
+  //update.addEventListener('click', mainApp.Update);
   delate.addEventListener('click', mainApp.Delete);
   read.addEventListener('click', mainApp.Read);
 })()
