@@ -78,7 +78,8 @@ outputProfile.style.display='none';
       socialNetworks:socialNetwork.value,     
     };
     console.log(data);
-    app_fireBase.databaseApi.create(path, data, messageHandler);  
+    app_fireBase.databaseApi.create(path, data, messageHandler);
+    
     printProfile(data);
   };
 
@@ -140,9 +141,9 @@ outputProfile.style.display='none';
   mainApp.Delete = fnDelete;
   mainApp.logOut = logOut;
   
-  //Eventos del DOM
   logOutButton.addEventListener('click', logOut);
-  create.addEventListener('click', mainApp.Create);
+  create.addEventListener('click', mainApp.Create );
+  update.addEventListener('click', mainApp.Update);
   delate.addEventListener('click', mainApp.Delete);
   read.addEventListener('click', mainApp.Read);
 })()
