@@ -35,7 +35,13 @@ outputProfile.style.display='none';
   
 //Imprime el nombre del usuario en el header
   const print= (user)=>{
-    const userName = `<p>${user.displayName}</p>`;
+    const userName = `<div>
+    <img src="${user.photoURL}">
+    <p>${user.displayName}</p>
+    
+    
+    
+    </div>`
     usersName.innerHTML=userName;
   };
 
