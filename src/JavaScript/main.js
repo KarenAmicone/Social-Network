@@ -13,6 +13,7 @@ const favoriteFood =document.getElementById ('favorite-food');
 const userDescription =document.getElementById ('user-description');
 const birthday =document.getElementById ('birthday');
 const socialNetwork =document.getElementById ('social');
+const pic = document.getElementById('pic');
 
 //Display
 inputProfile.style.display='block';
@@ -37,6 +38,9 @@ outputProfile.style.display='none';
   const print= (user)=>{
     const userName = `<p>${user.displayName}</p>`;
     usersName.innerHTML=userName;
+
+    pic.innerHTML = `<img src="${user.photoURL}">`
+
   };
 
   //Imprime la información del perfil
