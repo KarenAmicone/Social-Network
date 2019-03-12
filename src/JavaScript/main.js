@@ -7,7 +7,7 @@ const delate = document.getElementById('delete');
 const read = document.getElementById('read');
 const mantel = document.getElementById('mantel');
 const inputProfile = document.getElementById('input-profile');
-const outputProfile =document.getElementById("output-profile");
+const outputProfile =document.getElementById('output-profile');
 
 outputProfile.style.display="none";
 
@@ -60,15 +60,13 @@ outputProfile.style.display="none";
     var path = 'users/' + uid;
     var data = {
       favoriteFoods:favoriteFood.value,
-      
       userDescriptions:userDescription.value,
       birthdays:birthday.value,
       socialNetworks:socialNetwork.value,
       message: 'Hola chicas!!'      
     }
     console.log(data);
-    app_fireBase.databaseApi.create(path, data, messageHandler);  
-    
+    app_fireBase.databaseApi.create(path, data, messageHandler);
     
     printProfile(data);
     inputProfile.style.display="none";
@@ -115,7 +113,7 @@ outputProfile.style.display="none";
   mainApp.Delete = fnDelete;
   mainApp.logOut = logOut;
   
-  logOutButton.addEventListener("click", logOut);
+  logOutButton.addEventListener('click', logOut);
   create.addEventListener('click', mainApp.Create );
   update.addEventListener('click', mainApp.Update);
   delate.addEventListener('click', mainApp.Delete);
