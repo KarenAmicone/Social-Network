@@ -13,7 +13,7 @@ var app_fireBase = {};
       firebase.initializeApp(config);
       app_fireBase = firebase;
       
-      function fnCreate (path, body, callback){
+      function submitToFirebase (path, body, callback){
         if(!path || !body) return;
         app_fireBase.database().ref(path).set(body, callback);
       }
@@ -32,15 +32,10 @@ var app_fireBase = {};
         if(!path) return;
         app_fireBase.database().ref(path).remove(callback);
       }
-      function writeUserData (path,callback){
-        if(!path) return;
-        app_fireBase.database().ref(path).set(callback);
-
-      }
       
 
       app_fireBase.databaseApi = {
-        create: fnCreate,
+        create: submitToFirebase,
         read: fnRead,
         update: fnUpdate,
         delete: fnDelete
