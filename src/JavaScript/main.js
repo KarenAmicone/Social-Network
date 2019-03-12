@@ -13,6 +13,7 @@ const favoriteFood =document.getElementById ('favorite-food');
 const userDescription =document.getElementById ('user-description');
 const birthday =document.getElementById ('birthday');
 const socialNetwork =document.getElementById ('social');
+const pic = document.getElementById('pic');
 
 //Display
 inputProfile.style.display='block';
@@ -43,6 +44,9 @@ outputProfile.style.display='none';
     
     </div>`
     usersName.innerHTML=userName;
+
+    pic.innerHTML = `<img src="${user.photoURL}">`
+
   };
 
   //Imprime la información del perfil
@@ -80,7 +84,8 @@ outputProfile.style.display='none';
       socialNetworks:socialNetwork.value,     
     };
     console.log(data);
-    app_fireBase.databaseApi.create(path, data, messageHandler);  
+    app_fireBase.databaseApi.create(path, data, messageHandler);
+    
     printProfile(data);
   };
 
@@ -142,9 +147,9 @@ outputProfile.style.display='none';
   mainApp.Delete = fnDelete;
   mainApp.logOut = logOut;
   
-  //Eventos del DOM
   logOutButton.addEventListener('click', logOut);
-  create.addEventListener('click', mainApp.Create);
+  create.addEventListener('click', mainApp.Create );
+  update.addEventListener('click', mainApp.Update);
   delate.addEventListener('click', mainApp.Delete);
   read.addEventListener('click', mainApp.Read);
 })()
