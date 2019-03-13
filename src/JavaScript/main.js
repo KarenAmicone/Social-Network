@@ -36,6 +36,7 @@ outputProfile.style.display = 'none';
     }
   });
 
+
   //Imprime el nombre del usuario en el header
   const print = (user) => {
     const userName = `<p>${user.displayName}</p>`;
