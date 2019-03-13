@@ -12,4 +12,33 @@ var app_fireBase = {};
       };
       firebase.initializeApp(config);
       app_fireBase = firebase;
+      
+      function fnCreate (path, body, callback){
+        if(!path || !body) return;
+        app_fireBase.database().ref(path).set(body, callback);
+      }
+      
+      function fnRead (path, successFunction, errorFunction){
+        if(!path || !successFunction || !errorFunction) return;
+        app_fireBase.database().ref(path).once('value').then(successFunction, errorFunction);
+      }
+  
+      function fnUpdate (path, body, callback){
+        if(!path || !body) return;
+        app_fireBase.database().ref(path).update(body, callback);
+      }
+
+      function fnDelete (path, callback){
+        if(!path) return;
+        app_fireBase.database().ref(path).remove(callback);
+      }
+      
+
+      app_fireBase.databaseApi = {
+        create: fnCreate,
+        read: fnRead,
+        update: fnUpdate,
+        delete: fnDelete
+      }
+
 })()

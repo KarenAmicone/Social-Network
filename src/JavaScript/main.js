@@ -114,7 +114,7 @@ const outputProfile =document.getElementById('output-profile');
   
   logOutButton.addEventListener('click', logOut);
   create.addEventListener('click', mainApp.Create );
-  update.addEventListener('click', mainApp.Update);
+  //update.addEventListener('click', mainApp.Update);
   delate.addEventListener('click', mainApp.Delete);
   read.addEventListener('click', mainApp.Read);
 
