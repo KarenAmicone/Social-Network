@@ -34,14 +34,7 @@ function showInputs(){
         <td> <button class= "update-post" data-info="${dataKeys[index]}">Editar</button> </td>
         </tr>`;    
     });
-    /* for(let key in data){
-    showRow += '<tr>'+ '<td>' + data[key].name + '</td>'+
-    '<td>' + data[key].email + '</td>'+
-    `<td> <button class= 'delete-post' data-info='`+key+`'>Borrar</button> </td>`+
-    `<td> <button class= 'update-post' data-info='`+key+`'>Editar</button> </td>`
-    '</tr>';
-    }  */ 
-    /* tabBody.insertAdjacentHTML('afterbegin', showRow); */
+    
     tabBody.innerHTML=showRow;
     if(showRow!=''){
     var elementsUpdated=document.getElementsByClassName('update-post');
