@@ -1,0 +1,34 @@
+{
+  "name": "social-network",
+  "version": "1.0.0",
+  "description": "Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes\r sociales han invadido nuestras vidas. Las amamos y/u odiamos, y muchos no podemos vivir sin ellas.",
+  "main": "src/index.html",
+  "scripts": {
+    "htmlhint": "htmlhint src/*.html test/*.html",
+    "eslint": "eslint --ext .js src/",
+    "pretest": "npm run eslint && npm run htmlhint",
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "eslint": "^5.9.0",
+    "eslint-plugin-jest": "^22.1.2",
+    "firebase-admin": "^7.0.0",
+    "firebase-functions": "^2.2.0",
+    "htmlhint": "^0.10.1",
+    "jest": "^24.1.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarenAmicone/Social-Network.git"
+  },
+  "author": "Fabiola,Karen,Diana",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KarenAmicone/Social-Network/issues"
+  },
+  "homepage": "https://github.com/KarenAmicone/Social-Network#readme"
+}
