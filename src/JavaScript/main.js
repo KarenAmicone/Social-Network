@@ -8,7 +8,9 @@ const read = document.getElementById('read');
 const mantel = document.getElementById('mantel');
 const inputProfile = document.getElementById('input-profile');
 const outputProfile =document.getElementById('output-profile');
+const pic = document.getElementById('pic');
 
+outputProfile.style.display="none";
 
 (function () {
   var firebase = app_fireBase;
@@ -27,6 +29,7 @@ const outputProfile =document.getElementById('output-profile');
   const print= (user)=>{
     const userName = `<p>${user.displayName}</p>`;
     container.insertAdjacentHTML("beforeend", userName);
+    pic.innerHTML = `<img src=${user.photoURL}>`
   }
   const printProfile= (data)=>{
    const profile = `<p>${data.favoriteFoods}</p> 

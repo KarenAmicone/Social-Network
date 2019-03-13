@@ -1,7 +1,7 @@
-// Initialize Firebase
+//Initialize Firebase
 var app_fireBase = {};
 
-  (function (){
+(function (){
     var config = {
         apiKey: "AIzaSyDtx_GXUXDalpCmPGu0-jiGCX36HhWC-pE",
         authDomain: "picfood-a0a5a.firebaseapp.com",
