@@ -11,15 +11,14 @@
   <link rel="stylesheet" type="text/css" media="screen" href="./CSS/style.css" />
   <link rel="shortcut icon" href= "./images/picfood2.png">
   <title>Picfood</title>
-
 </head>
 
 <body>
     <main>
     <header>
         <article id="container" class="container">
-      
             <img src="./images/picfood2.png" alt="">
+            <p id="users-name"></p>
             <a id="logout" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">exit_to_app</i></a>
           </article>
     </header>
@@ -28,24 +27,23 @@
 
     <div class="col s12 m7">
       <div class="card horizontal">
-        <div class="card-image">
+        <div id="pic" class="card-image">
           <img src="./images/picfood.png">
         </div>
         <div class="card-stacked">
           <div class="card-content" id="input-profile">
             <h3>Descripción</h3>
-            <input type="text" id="favorite-food" placeholder="Mi comida favorita es ...">
-            <input type="text" id="user-description" placeholder="Acerca de mi.....">
+            <input type="text" name= "favoriteFood" id="favorite-food" placeholder="Mi comida favorita es ...">
+            <input type="text" name= "description" id="user-description" placeholder="Acerca de mi.....">
             <label for="">Cumpleaños</label>
-            <input type="date" id="birthday">
+            <input type="date" name= "birth" id="birthday">
             <label for="">Mis Redes Sociales</label>
-            <input type="url" id="social">
+            <input type="url" name= "network" id="social">
             <button id="create">Guardar</button>
-            
           </div>
+
           <div id="output-profile"  > 
             <button id="read">Editar Perfil</button>
-            <button id="update">Guardar</button>
           </div>
           
         </div>
@@ -74,9 +72,8 @@
       </figure>
       <figure class="foto6">
         <img src="./images/Plato_2.png">
-      </figure> -->
+      </figure>-->
     </article>
-
   </main>
 
 

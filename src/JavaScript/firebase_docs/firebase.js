@@ -32,11 +32,6 @@ var app_fireBase = {};
         if(!path) return;
         app_fireBase.database().ref(path).remove(callback);
       }
-      function writeUserData (path,callback){
-        if(!path) return;
-        app_fireBase.database().ref(path).set(callback);
-
-      }
       
 
       app_fireBase.databaseApi = {
