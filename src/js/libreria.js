@@ -1,12 +1,12 @@
-((window, document) => {
+(function(window, document) {
   'use strict';
-  let initialize = function () {
-    let element = null,
+  var inicializate = function () {
+    var element = null,
       frame = null,
       paths = {},
       drivers = {},
-      driver,
-      libraryMe = {
+      driver = null,
+    var libraryMe = {
         
         getID: function (id) {
           element = document.getElementById(id);
@@ -24,7 +24,7 @@
         
         enrutar: function () {
           frame = element;
-          return this;
+           return this;
         },
 
         path: function (route, template, controler, load) {
@@ -35,16 +35,19 @@
             'load': load
           };
           return this;
+        
         },
 
         routeManager: function () {
-          let hash = window.location.hash.substring(1) || '/',
+          var hash = window.location.hash.substring(1) || '/',
             destiny = paths[hash],
             xhr = new XMLHttpRequest();
+
           if (destiny && destiny.template) {
             xhr.addEventListener('load', () => {
               frame.innerHTML = this.responseText;
             }, false);
+            
             xhr.open('get', destiny.template, true);
             xhr.send(null);
           } else {
@@ -55,7 +58,7 @@
     return libraryMe;
   }
   if (typeof window.libraryMe === 'undefined') {
-    window.libraryMe = window._ = initialize();
+    window.libraryMe = window._ = inicializate();
     window.addEventListener('load', _.routeManager, false);
     window.addEventListener('hashchange', _.routeManager, false);
   } else {
