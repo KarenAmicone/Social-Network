@@ -39,6 +39,7 @@ var ref = new firebase.auth.FacebookAuthProvider();
     // Privacy policy url.
     //privacyPolicyUrl: '<your-privacy-policy-url>'
   };
-  ui.start('#firebaseui-auth-container', uiConfig)
+  ui.start('#firebaseui-auth-container', uiConfig);
 
-})()
+})();
+

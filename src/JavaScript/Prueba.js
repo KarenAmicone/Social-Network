@@ -14,16 +14,16 @@ formInputs= document.getElementById('form-inputs');
 formInputs.addEventListener('submit', sendToFirebase, false);
 tabBody=document.getElementById('tab-body');
 //Hace una referencia al nodo raíz de la base de datos
-refProfile =firebase.database().ref().child('profile');
+refProfile =firebase.database().ref(path);
 showInputs();
 }
 
 function showInputs(){
-    refProfile.on('value', function(snap){
-    let data= snap.val();
-    let dataValues=(Object.values(snap.val())).reverse();
+    refProfile.on('value').then(function(snap){
+    var snapChild= snap.child('profile');    
+    let dataValues=(Object.values(snapChild.val())).reverse();
     console.log(dataValues);
-    let dataKeys=(Object.keys(snap.val())).reverse();
+    let dataKeys=(Object.keys(snapChild.val())).reverse();
     console.log(dataKeys);
     let showRow = '';
     dataValues.forEach((element, index) => {
