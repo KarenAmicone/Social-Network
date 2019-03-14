@@ -1,8 +1,6 @@
 (function () {
-  libraryMe.getID('view').enrutar()
-
-    .path('/',. 'views/inicio.html', null, null)
-    .path('/create-post', './views/post/create.html', null, null)
-    .path('/read-post', './views/post/read.html', null, null)
-    .path('/update-post', './views/post/update.html', null, null);
-})(window, document);
+    library.getID('view').redirect().road('/', './views/home.html', null, null)
+           .road('/crear-contacto', './views/publication/create.html', null, null)
+           .road('/leer-contacto', './views/publication/read.html', null,null)
+           .road('/actualizar-contacto', './views/publication/update.html',null,null)
+})();
