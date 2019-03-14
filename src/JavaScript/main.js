@@ -38,13 +38,10 @@ var uid = null;
   
 //Imprime el nombre del usuario en el header
   const print= (user)=>{
-    const userName = `<p>${user.displayName}</p>
-    <p>${user.email}</p>`;
+    const userName = `<p>${user.displayName}</p>`;
     usersName.innerHTML=userName;
     pic.innerHTML = `<img src="${user.photoURL}">`
-  };
-    
-    
+  };  
 })();
 
 
@@ -63,7 +60,7 @@ function messageHandler (err){
   }
 };
 
-//Función para crear publicación 
+/* //Función para crear publicación 
 function fnCreate (){
   var path = 'users/' + uid;
   console.log(path);
@@ -76,12 +73,22 @@ function fnCreate (){
   console.log(data);
   app_fireBase.databaseApi.create(path, data, messageHandler);
   printProfile(data);
+}; */
+
+
+function showInputForm(){
+  inputProfile.style.display='block';
+  outputProfile.style.display= 'none';
+  const btnEdit= document.createElement('BUTTON');
+  const t = document.createTextNode('Guardar');
+  btnEdit.appendChild(t);
+  inputProfile.appendChild(btnEdit);
+  btnEdit.addEventListener('click', fnUpdate);
 };
 
 
 //Función para actualizar
 function fnUpdate (){
-  inputProfile.style.display='block';
   var path = 'users/' + uid;
   var data = {
     favoriteFoods:favoriteFood.value,
@@ -92,13 +99,8 @@ function fnUpdate (){
   app_fireBase.databaseApi.update(path, data, messageHandler);
   outputProfile.innerHTML="";
   printProfile(data);
-  const btnEdit= document.createElement('BUTTON');
-  const t = document.createTextNode('Editar');
-  btnEdit.appendChild(t);
-  outputProfile.appendChild(btnEdit);
-  btnEdit.addEventListener('click', mainApp.Read);
-
 };
+
 
 //Función para eliminar publicaciones
 function fnDelete (){
@@ -122,10 +124,10 @@ function fnRead (){
  function successFn (snapShot){
    if (!!snapShot && !!snapShot.val()){
      let data={
-     favoriteFoods:snapShot.val().favoriteFoods,
-     userDescriptions:snapShot.val().userDescriptions,
-     birthdays:snapShot.val().birthdays,
-     socialNetworks: snapShot.val().socialNetworks
+      favoriteFoods:favoriteFood.value,
+      userDescriptions:userDescription.value,
+      birthdays:birthday.value,
+      socialNetworks:socialNetwork.value,
    }
      printProfile(data);
      /* inputProfile.removeChild(create);
@@ -141,13 +143,14 @@ function fnRead (){
 };
 
 //Invocación de funciones
-mainApp.Create = fnCreate;
+//mainApp.Create = fnCreate;
 mainApp.Update = fnUpdate;
 mainApp.Delete = fnDelete;
+mainApp.showInputForm= showInputForm;
 mainApp.logOut = logOut;
 
 logOutButton.addEventListener('click', logOut);
-create.addEventListener('click', fnUpdate );
+create.addEventListener('click', showInputForm, fnRead);
 //update.addEventListener('click', mainApp.Update);
 delate.addEventListener('click', mainApp.Delete);
 read.addEventListener('click', fnRead);
