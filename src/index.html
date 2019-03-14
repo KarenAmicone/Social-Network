@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Picfood</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale= 1.0, minimum-scale= 1.0">
-  <link rel="stylesheet" type="text/css" media="screen" href="./CSS/index.css">
-  <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
-  <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mi libreria actual - SRC</title>
 </head>
-
 <body>
-  <main class="container">
-    <img src="./images/logo.png" alt="">
-    <article id="firebaseui-auth-container"></article>
+    <header>
+        <h1>Libreria de rutas</h1>
+    </header>
+
+    <nav>
+        <a href="#/">Inicio</a>
+        <a href="#/crear-contacto">Publicaciones</a>
+        <a href="#/leer-contacto">Listado</a>
+    </nav>
+
+    <!-- Aqui es donde se van a imprimir los htmls -->
+    <main id="view"></main>
     
-    <article id="loader">Loading...</article>
-  </main>
+    <footer>
+        <p>Este es el proyecto</p>
+    </footer>
+    
 
-
-  <script src="./JavaScript/firebase_docs/firebase.js"></script>
-  <script src="./JavaScript/index.js"></script>
+    <script src="./js/library.js"></script>
+    <script src="./js/rutas.js"></script>
 </body>
-
 </html>
