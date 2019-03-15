@@ -112,6 +112,13 @@ outputProfile.style.display = 'block';
   //Función para eliminar publicaciones
   function fnDelete() {
     var path = 'users/' + uid;
+    var data = {
+      favoriteFoods: favoriteFood.value,
+      userDescriptions: userDescription.value,
+      birthdays: birthday.value,
+      socialNetworks: socialNetwork.value,
+    }
+    printProfile(data);
     app_fireBase.databaseApi.delete(path, messageHandler);
   };
 
