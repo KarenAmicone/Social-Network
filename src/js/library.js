@@ -7,13 +7,17 @@
             frame = null, //Aquí se va a ir recargando la vista
             tack =  {},
             controllers = {},
-            currentDriver,
-
+            currentDriver = null,
             library = {
             
             getID: function (id) {
                 element = document.getElementById(id);
                 return this;
+            },
+
+            get: function (id) {
+                console.log(id)
+                return document.getElementById(id);
             },
 
             //Esta función va a ayudar para los formularios, ya que previene que los
@@ -24,6 +28,21 @@
                     e.preventDefault();
                 }, false);
                 return this;
+            },
+            //Permite controlar las acciones que se van a realizar en cada template
+            //name - nombre del controlador
+            //ctrl - es el control
+            fnController: function (name, ctrl){
+                controllers[name] = {
+                    'controller': ctrl
+                };
+                return this
+            },
+
+            //Devuelve el controlador actual
+            getCtrl: function () {
+                console.log(currentDriver)
+                return currentDriver;
             },
 
             //Permite asignar al marco el elemento que ha sido seleccionado
@@ -53,8 +72,19 @@
                     xhr = new XMLHttpRequest();
 
                     if(getTack && getTack.template){
+                        if(getTack.fnController){
+                            currentDriver = controllers[ getTack.fnController].fnController;
+                        }
                         xhr.addEventListener('load', function(){
                             frame.innerHTML = this.responseText;
+
+                            setTimeout(function(){
+                                //Si al darle click al botón existe una funcion
+                                //se carga la página
+                                if(typeof getTack.fLoad === 'function'){
+                                    getTack.fLoad();
+                                }
+                            }, 60000);
                         }, false);
 
                         xhr.open('get', getTack.template, true);

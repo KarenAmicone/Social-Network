@@ -1,5 +1,5 @@
  <main>
-     <form action="#" method="post">
+     <form id="create-contact" action="#" method="post">
          <fieldset>
              <legend>Crear contacto</legend>
              
@@ -12,7 +12,7 @@
              <label for="bithday">Cumpleaños</label>
              <input type="date" name="birthday" id="birthday" required>
 
-             <button type="submit" id="btn-update">Actualizar</button>
+             <button type="button" id="btn-create" onclick="library.getCtrl().create(library.get('create-contact'))">Crear</button>
 
          </fieldset>
 
