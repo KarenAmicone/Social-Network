@@ -19,7 +19,7 @@ showInputs();
 }
 
 function showInputs(){
-    refProfile.on('value').then(function(snap){
+    refProfile.on('value').then(function(snap){ 
     var snapChild= snap.child('profile');    
     let dataValues=(Object.values(snapChild.val())).reverse();
     console.log(dataValues);

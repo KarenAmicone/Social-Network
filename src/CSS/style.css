@@ -5,7 +5,7 @@
 /*Generals*/
 
 p{
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Cabin', sans-serif;
   justify-self: center;
 }
 
@@ -31,6 +31,10 @@ p{
 
 .container > a {
   grid-column: 4/5;
+}
+
+.output-profile{
+  padding: 8px;
 }
 
 .container-body {

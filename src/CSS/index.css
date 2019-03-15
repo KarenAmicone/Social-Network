@@ -8,23 +8,29 @@
     width: 100vw;
     height: 100vh;
     grid-template-columns: 0.5fr 3fr 3fr 0.5fr;
-    grid-template-rows: 10% 30% 60%;
+    grid-template-rows: 15% 25% 20% 40%;
     align-items: center;
     justify-items: center;
-    background-image: linear-gradient(to bottom, #fff7e9, #f7d9ba, #f1b996, #f1ab95, #f38c8c); 
+    background-color: #ffd6cc;
   }
 
-  img{
+  #icon {
     margin: auto;
     grid-column: 2/4;
     grid-row: 2/3;
-    width: 70vw;
-    height: 30vh;
+    width: 100%;
+    max-width: 80vw;
+}
 
+#name-logo {
+  margin: auto;
+    grid-column: 2/4;
+    grid-row: 3/4;
+    width: 100%;
+    max-width: 70vw;
 }
 
   #firebaseui-auth-container{
       grid-column: 2/4; 
-      grid-row: 3/4;
-
+      grid-row: 4/5;
   }
