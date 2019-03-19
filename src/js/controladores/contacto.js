@@ -7,6 +7,9 @@
         contactos : [],
         crear: function(formulario){
             this.contacto.nombre = formulario.nombre.value;
+            this.contacto.correo = formulario.correo.value;
+            this.contacto.edad = parseInt (formulario.edad.value, 10);
+            this.contacto.nacimiento = formulario.nacimiento.value;
             consecutivo= consecutivo + 1 ;
             this.contacto.identificador = consecutivo;
             this.contactos.push(this.contacto);
