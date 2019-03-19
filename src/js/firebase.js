@@ -5,6 +5,7 @@ var ref = new firebase.auth.FacebookAuthProvider();
 var uid = null;
 const logOutButton = document.getElementById('logout');
 
+
 (function(){
     var config = {
         apiKey: "AIzaSyDtx_GXUXDalpCmPGu0-jiGCX36HhWC-pE",
@@ -49,6 +50,6 @@ const logOutButton = document.getElementById('logout');
         firebase.auth().signOut();
         };
 
-        logOutButton.addEventListener('click', signOut);
-    
-})();
+        logOutButton.addEventListener('click', signOut); 
+    })();
+            
