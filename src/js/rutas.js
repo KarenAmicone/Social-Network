@@ -1,7 +1,7 @@
 (function(window, document){
     libreria.getID('vista').enrutar()
            .ruta('/','./vistas/inicio.html', null, null)
-           .ruta('/crear-contacto', './vistas/crear.html', 'contacto', function(){
+           .ruta('/perfil', './vistas/crear.html', 'contacto', function(){
                    _.getID('crearContacto').noSubmit();
            })
            .ruta('/listar-contactos', 
