@@ -1,12 +1,17 @@
-(function () {
-    
-    library.getID('view').redirect().road('/', './views/home.html', null, null)
-           .road('/crear-contacto', 
-                 './views/publication/create.html', 
-                 'contact', 
-                 function(){
-                    library.getID('create-contact').noSubmit();
-                 })
-           .road('/leer-contacto', './views/publication/read.html', 'contact', null)
-           .road('/actualizar-contacto', './views/publication/update.html','contact',null)
-})();
+(function(window, document){
+    libreria.getID('vista').enrutar()
+           .ruta('/','./vistas/inicio.html', null, null)
+           .ruta('/crear-contacto', './vistas/crear.html', 'contacto', function(){
+                   _.getID('crearContacto').noSubmit();
+           })
+           .ruta('/listar-contactos', 
+           './vistas/listar.html',
+           'contacto', function(){
+                   _.getCtrl().listar();
+           })
+           .ruta('/actualizar-contactos', './vistas/actualizar.html', 'contacto', function(){
+                   _.getID('frmActualiza').noSubmit();
+                   _.getCtrl().preparaActualizacion();
+           })
+   
+   })(window,document)

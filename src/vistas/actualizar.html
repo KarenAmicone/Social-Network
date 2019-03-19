@@ -1,0 +1,19 @@
+<div>
+    <form id="frmActualiza" action="#" method="post">
+        <fieldset>
+            <legend>crear contacto  </legend>
+            <label for="identificador">identificado</label>
+            <input type="number" name="identificador" id="identificador" disabled>
+            <label for="nombre">nombre</label>
+            <input type="text" name="nombre" id="nombre" required autocomplete="off">
+            <label for="correo">Correo</label>
+            <input type="email" name="correo" id="correo" required autocomplete="off">
+            <label for="edad">Edad</label>
+            <input type="number" name="edad" id="edad" required  >
+            <label for="nacimimiento">nacimiento</label>
+            <input type="date" name="nacimiento" id="nacimiento" required>
+            <button type="submit" id="btnCrear" onclick="_.getCtrl().actualizar(_.get('frmActualiza'))">Actualizar</button>
+
+        </fieldset>
+    </form>
+</div>
