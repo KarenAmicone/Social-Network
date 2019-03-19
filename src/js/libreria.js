@@ -83,8 +83,3 @@
         
     }
    })(window, document);
-<<<<<<< HEAD
-   
-   
-=======
->>>>>>> upstream/rama-prueba
