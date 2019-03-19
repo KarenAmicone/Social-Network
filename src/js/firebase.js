@@ -1,13 +1,26 @@
 // Initialize Firebase
-window.controlador = {
-    firebase: firebase.initializeApp(config),
 
-    starting: () => {
-        var ref = new firebase.auth.GoogleAuthProvider();
-        var ref = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().onAuthStateChanged((user) => {
+var ref = new firebase.auth.GoogleAuthProvider();
+var ref = new firebase.auth.FacebookAuthProvider();
+var uid = null;
+const logOutButton = document.getElementById('logout');
+
+(function(){
+    var config = {
+        apiKey: "AIzaSyDtx_GXUXDalpCmPGu0-jiGCX36HhWC-pE",
+        authDomain: "picfood-a0a5a.firebaseapp.com",
+        databaseURL: "https://picfood-a0a5a.firebaseio.com",
+        projectId: "picfood-a0a5a",
+        storageBucket: "picfood-a0a5a.appspot.com",
+        messagingSenderId: "735993043164"
+        };
+    firebase.initializeApp(config);
+    
+    firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                /* window.location.replace("./vistas/crear.html"); */
+                if(location.href.match(/index.html$/gm)){
+                    location.replace('./login.html')
+                } 
             }
         });
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -22,32 +35,20 @@ window.controlador = {
             },
             // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
             signInFlow: 'popup',
-            signInSuccessUrl: './index.html',
+            signInSuccessUrl: './login.html',
             signInOptions: [
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
                 firebase.auth.FacebookAuthProvider.PROVIDER_ID,
                 firebase.auth.EmailAuthProvider.PROVIDER_ID,
             ],
-            tosUrl: './index.html'
+            tosUrl: './login.html'
         };
         ui.start('#firebaseui-auth-container', uiConfig);
-    },
+        
+        function signOut (){
+        firebase.auth().signOut();
+        };
+
+        logOutButton.addEventListener('click', signOut);
     
-    auth: ()=>{
-        var uid = null;
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                // User is signed in.
-                uid = user.uid;
-                /*  print(user);
-                 showProfile(); */
-            } else {
-                uid = null;
-                window.location.replace('inicio.html');
-            }
-        });
-
-    }
-}
-
-//Autenticación
+})();
