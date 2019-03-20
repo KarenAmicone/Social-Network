@@ -39,10 +39,12 @@ const creatingPost = ()=>{
         db.collection('posts').add({
             content:createPost['content'].value,
             title: createPost['title'].value
+           
         }).then(()=>{
             createPost.reset();
         }).catch(err =>{
             console.log(err.message);
         });
+        
     })
 }

@@ -1,6 +1,7 @@
 (function(window, document){
     libreria.getID('vista').enrutar()
         .ruta('/', './index.html', null, null)
+        
            .ruta('/','./vistas/inicio.html', 'firebase', function(){
                    _.getID('perfil').noSubmit();
            })
