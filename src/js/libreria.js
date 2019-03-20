@@ -12,23 +12,10 @@
                     return this;
                 },
    
-                get: function(id){
-                   return document.getElementById(id);
-                },
-   
-                noSubmit: function(){
-                    elemento.addEventListener('submit', function(e){
-                        e.preventDefault();
-                    }, false);
-                    return this;
-                },
                 controlador: function(nombre, ctrl){
                    controladores[nombre] = {'controlador':ctrl};
                 },
-   
-                getCtrl : function(){
-                   return ctrlActual;
-                },
+
                 enrutar: function(){
                     marco = elemento;
                     return this;
@@ -50,8 +37,7 @@
    
                    if (destino && destino.plantilla) {
                        if (destino.controlador) {
-                           ctrlActual = controladores[destino.controlador].controlador;
-                           
+                           ctrlActual = controladores[destino.controlador];   
                        }
                        
                       xhr.addEventListener('load',function(){
@@ -79,7 +65,7 @@
         window.addEventListener('hashchange', _.manejadorRutas, false)
    
     }else{
-        console.log("se llama nuevamente la libreria ");
+        console.log("Se llama nuevamente la librería ");
         
     }
    })(window, document);
