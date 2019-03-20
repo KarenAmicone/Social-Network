@@ -9,6 +9,7 @@ const createPost= document.getElementById('create-post');
                 // User is signed in.
                 uid = user.uid;
                 db.collection('posts').onSnapshot(snapshot => {
+                    wall.innerHTML = '';
                 printPost(snapshot.docs);
             });
             creatingPost();
@@ -16,7 +17,8 @@ const createPost= document.getElementById('create-post');
                 uid = null;
             window.location.replace('./index.html');
             }
-        })
+        }),
+
     })
 })();
 
@@ -29,13 +31,13 @@ const printPost = (data)=>{
         <p>Post: ${post.content}</p>
         </article>
         `;
-       wall.insertAdjacentHTML('beforeend', toPrint);
+        wall.insertAdjacentHTML('beforeend', toPrint);
     });
 }
 
 const creatingPost = ()=>{
     createPost.addEventListener('submit', (e)=>{
-        e.preventDefault;
+        e.preventDefault();
         db.collection('posts').add({
             content:createPost['content'].value,
             title: createPost['title'].value
