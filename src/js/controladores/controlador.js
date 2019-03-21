@@ -80,6 +80,7 @@ window.manejador = {
         const creatingPost = (user) => {
             createPost.addEventListener('submit', (e) => {
                 e.preventDefault();
+                snapshotCollection();
                 db.collection('posts').add({
                     foto: user.photoURL,
                     user: user.displayName,
