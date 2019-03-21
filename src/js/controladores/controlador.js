@@ -3,8 +3,7 @@ window.manejador = {
 
     login: () => {
         firebase.auth().onAuthStateChanged((user) => {
-            if (user) { 
-            };
+            if (user) {};
         });
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
         var uiConfig = {
@@ -32,42 +31,51 @@ window.manejador = {
 
     logOut: () => {
         var uid = null;
+        let snapshotArray = [];
         const db = firebase.firestore();
+        let user= firebase.auth().currentUser;
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 // User is signed in.
-                uid = user.uid;
-                db.collection('posts').onSnapshot(snapshot => {
-                    wall.innerHTML='';
-                    printPost(snapshot.docs);
-                });
+                uid = user.uid;  
                 creatingPost(user);
+                snapshotCollection();
             } else {
                 uid = null;
                 window.location.replace('./index.html');
             }
-        })
+        });
+        
+        const snapshotCollection= ()=> {
+            db.collection('posts').onSnapshot(
+                {
+                    includeMetadataChanges: true
+                },
+                snapshot => { 
+                    snapshotT = snapshot.docs;
+                    snapSorted(snapshotT);
+                })};
+                
+                const snapSorted = (array)=>{
+                    for (let i = 0; i < array.length; i++) {
+                        snapshotDocument = array[i]._document.proto;
+                        snapshotArray.push(snapshotDocument);
+                    }
+                    let sorted= 
+                    snapshotArray.sort((a, b) => {
+                        if (a.createTime < b.createTime) {
+                            return -1;
+                        }
+                    }).reverse();
+                    printPost(sorted);
+                };
+        
         const logOutButton = document.getElementById('logout');
         logOutButton.addEventListener('click', () => {
             firebase.auth().signOut();
         });
         const wall = document.getElementById('wall');
         const createPost = document.getElementById('create-post');
-        
-        const printPost = (data) => {
-            data.forEach(doc => {
-                let post = doc.data();
-                let toPrint = `
-                <article class="post">
-                <p>User: ${post.user}</p>
-                <img src="${post.foto}">
-                <p>Categoría: ${post.title}</p>
-                <p>Post: ${post.content}</p>
-                </article>
-                `;
-                wall.insertAdjacentHTML('beforeend', toPrint);
-            });
-        }
         
         const creatingPost = (user) => {
             createPost.addEventListener('submit', (e) => {
@@ -79,11 +87,26 @@ window.manejador = {
                     title: createPost['title'].value
                 }).then(() => {
                     createPost.reset();
-                }).catch(err => {
+                })
+                .catch(err => {
                     console.log(err.message);
                 });
             })
+        };
+        
+        const printPost = (data) => {
+            data.forEach(doc => {
+                let toPrint = `
+                <article class="post">
+                <p>Fecha: ${doc.createTime}</p>
+                <p>User: ${doc.fields.user.stringValue}</p>
+                <img class= "profile-foto" src="${doc.fields.foto.stringValue}">
+                <p>Categoría: ${doc.fields.title.stringValue}</p>
+                <p>Post: ${doc.fields.content.stringValue}</p>
+                </article>
+                `;
+                wall.insertAdjacentHTML('beforeend', toPrint);
+            });
         }
     }
 }
-
