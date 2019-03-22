@@ -85,10 +85,10 @@ window.manejador = {
                 console.log(docData.createTime)
                 let toPrint = `
                 <article id="posting" class="post">
-                <p>User: ${docData.user}</p>
+                <p>${docData.user}</p>
                 <img class= "profile-foto" src="${docData.foto}">
                 <p>Categoría: ${docData.title}</p>
-                <p>Post: ${docData.content}</p>
+                <p>${docData.content}</p>
                 </article>
                 `;
                 console.log(toPrint)
@@ -116,10 +116,10 @@ window.manejador = {
                                 let perfil =
                                     `
                 <article id="posting" class="post">
-                <p>User: ${docData.user}</p>
+                <p>${docData.user}</p>
                 <img class= "profile-foto" src="${docData.foto}">
                 <p>Categoría: ${docData.title}</p>
-                <p id= "post-output">Post: ${docData.content}</p>
+                <p id= "post-output">${docData.content}</p>
                 <button onclick= "updatePost('${doc.id}', '${doc.data().content}', '${doc.data().title}')">Editar</button>
                 <button onclick= "deletePost('${doc.id}')" class= "delete-btn">Borrar</button>
                 </article>
