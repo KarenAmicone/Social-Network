@@ -33,69 +33,44 @@ window.manejador = {
         var uid = null;
         let snapshotArray = [];
         const db = firebase.firestore();
-        let user= firebase.auth().currentUser;
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 // User is signed in.
-                uid = user.uid;  
-                creatingPost(user);
-                snapshotCollection();
-            } else {
-                uid = null;
-                window.location.replace('./index.html');
-            }
-        });
-        
-        const snapshotCollection= ()=> {
-            db.collection('posts').onSnapshot(
-                {
-                    includeMetadataChanges: true
-                },
-                snapshot => { 
-                    snapshotT = snapshot.docs;
-                    snapSorted(snapshotT);
-                })};
-                
-                const snapSorted = (array)=>{
-                    for (let i = 0; i < array.length; i++) {
-                        snapshotDocument = array[i]._document.proto;
-                        snapshotArray.push(snapshotDocument);
-                    }
-                    let sorted= 
-                    snapshotArray.sort((a, b) => {
-                        if (a.createTime < b.createTime) {
-                            return -1;
-                        }
-                    }).reverse();
-                    printPost(sorted);
-                };
-        
+                uid = user.uid;
+                db.collection('posts').onSnapshot(
+                    snapshot => { 
+                        let snapshotT = snapshot;
+                        printPost(snapshotT.docs);
+                        console.log(snapshot.docs);
+
+                    });
+                } else {
+                    uid = null;
+                    window.location.replace('./index.html');
+                }
+            });
+    
+            
         const logOutButton = document.getElementById('logout');
         logOutButton.addEventListener('click', () => {
             firebase.auth().signOut();
         });
+            
         const wall = document.getElementById('wall');
-        const createPost = document.getElementById('create-post');
-        
-        const creatingPost = (user) => {
-            createPost.addEventListener('submit', (e) => {
-                e.preventDefault();
-                db.collection('posts').add({
-                    foto: user.photoURL,
-                    user: user.displayName,
-                    content: createPost['content'].value,
-                    title: createPost['title'].value
-                }).then(() => {
-                    createPost.reset();
-                })
-                .catch(err => {
-                    console.log(err.message);
-                });
-            })
-        };
-        
+
         const printPost = (data) => {
-            data.forEach(doc => {
+            snapshotArray=[];
+            for (let i = 0; i < data.length; i++) {
+                snapshotDocument = data[i]._document.proto;
+                snapshotArray.push(snapshotDocument);
+            }
+            snapshotArray.sort((a, b) => {
+                if (a.createTime < b.createTime) {
+                    return -1;
+                }
+            }).reverse();
+            wall.innerHTML='';
+            snapshotArray.forEach(doc => {
                 let toPrint = `
                 <article class="post">
                 <p>Fecha: ${doc.createTime}</p>
@@ -108,5 +83,35 @@ window.manejador = {
                 wall.insertAdjacentHTML('beforeend', toPrint);
             });
         }
+    },
+    
+    perfil: ()=>{
+        const db = firebase.firestore();
+        const createPost = document.getElementById('create-post');
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in.
+                uid = user.uid;
+                    createPost.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        db.collection('posts').add({
+                            id: createPost['idCreated'].value,
+                            foto: user.photoURL,
+                            user: user.displayName,
+                            content: createPost['content'].value,
+                            title: createPost['title'].value
+                        }).then(() => {
+                            createPost.reset();
+                        })
+                        .catch(err => {
+                            console.log(err.message);
+                        });
+                    })
+                
+                } else {
+                    uid = null;
+                    window.location.replace('./index.html');
+                }
+            })
     }
-}
+}  
