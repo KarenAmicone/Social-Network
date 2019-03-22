@@ -4,9 +4,7 @@
                 //Este es el muro
                 .ruta('/muro', './vistas/muro.html', 'controlador', window.manejador.logOut)
                 //Este es el perfil
-                .ruta('/crear-contacto', './vistas/crear.html', 'firebase', function () {
-                        _.getID('crearContacto').noSubmit();
-                })
+                .ruta('/perfil', './vistas/perfil.html', 'controlador',window.manejador.perfil)
 
 
 })(window, document);

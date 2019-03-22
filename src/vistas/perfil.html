@@ -1,16 +1,18 @@
 <div>
-    <form action="#" method="post" id="crearContacto">
-        <fieldset>
-            <legend>crear contacto  </legend>
-            <label for="nombre">nombre</label>
-            <input type="text" name="nombre" id="nombre" required autocomplete="off">
-            <label for="correo">Correo</label>
-            <input type="email" name="correo" id="correo" required autocomplete="off">
-            <label for="edad">Edad</label>
-            <input type="number" name="edad" id="edad" required  >
-            <label for="nacimimiento">nacimiento</label>
-            <input type="date" name="nacimiento" id="nacimiento" required>
-            <button type="submit" id="btnCrear" onclick="_.getCtrl().crear(_.get('crearContacto'))">Crear</button>
-        </fieldset>
-    </form>
+    <article>
+        <form action="#" id="create-post">
+                <label for="post-content">3, 2, 1...¡Picfood!</label>
+                <input id="content" name="post-content" type="text" placeholder="¿Qué estás comiendo?">
+                <input id="idCreated" type="text">
+                <select id="title">
+                        <option value="" disabled selected>Elige una opción</option>
+                        <option value="Receta">Receta</option>
+                        <option value="Reseña">Reseña</option>
+                        <option value="Recomendación">Recomendación</option>
+                        <option value="Foto">Foto</option>
+                </select>
+                <label>Categoría</label>
+                <input type="submit"></input>
+        </form>
+</article>
 </div>
