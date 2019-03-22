@@ -33,6 +33,8 @@ window.manejador = {
         var uid = null;
         const db = firebase.firestore();
         const createPost = document.getElementById('create-post');
+        const contentInput = document.getElementById('content');
+        const titleInput = document.getElementById('title');
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 // User is signed in.
@@ -44,7 +46,8 @@ window.manejador = {
 
             createPost.addEventListener('submit', (e) => {
                 e.preventDefault();
-                db.collection('posts').add({
+                if(titleInput.value && contentInput.value != null){
+                    db.collection('posts').add({
                         uid: user.uid,
                         foto: user.photoURL,
                         user: user.displayName,
@@ -56,7 +59,10 @@ window.manejador = {
                     })
                     .catch(err => {
                         console.log(err.message);
-                    });
+                    }); 
+                    } else {
+                        alert('Para publicar necesitas escribir algo y elegir una categoría. Gracias :D')
+                    }
             });
             } else {
                 uid = null;
@@ -127,7 +133,7 @@ window.manejador = {
                     let option = confirm("¿Estás segura(o) de borrar este post?");
                     if(option == true){
                         db.collection('posts').doc(id).delete().then (()=>{
-                            alert('Este elemento está siendo eliminado');
+                            console.log('Este elemento está siendo eliminado');
                         }).catch((error)=>{
                             console.error('Error removing document: ', error);
                         });
@@ -157,6 +163,7 @@ window.manejador = {
                     e.preventDefault();
                     switch(modo){
                         case CREATE:
+                        if(titleInput.value && contentInput.value != null){
                         db.collection('posts').add({
                             uid: user.uid,
                             foto: user.photoURL,
@@ -169,7 +176,10 @@ window.manejador = {
                         })
                         .catch(err => {
                             console.log(err.message);
-                        });
+                        }); 
+                        } else {
+                            alert('Para publicar necesitas escribir algo y elegir una categoría. Gracias :D')
+                        }
                         break;
                         case UPDATE:
                         db.collection('posts').doc(idPost).update({
