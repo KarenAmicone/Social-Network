@@ -38,8 +38,8 @@ window.manejador = {
             if (user) {
                 // User is signed in.
                 uid = user.uid;  
-                creatingPost(user);
                 snapshotCollection();
+                creatingPost(user);
             } else {
                 uid = null;
                 window.location.replace('./index.html');
@@ -56,19 +56,19 @@ window.manejador = {
                     snapSorted(snapshotT);
                 })};
                 
-                const snapSorted = (array)=>{
-                    for (let i = 0; i < array.length; i++) {
-                        snapshotDocument = array[i]._document.proto;
-                        snapshotArray.push(snapshotDocument);
-                    }
-                    let sorted= 
-                    snapshotArray.sort((a, b) => {
-                        if (a.createTime < b.createTime) {
-                            return -1;
-                        }
-                    }).reverse();
-                    printPost(sorted);
-                };
+        const snapSorted = (array)=>{
+            for (let i = 0; i < array.length; i++) {
+                snapshotDocument = array[i]._document.proto;
+                snapshotArray.push(snapshotDocument);
+            }
+            let sorted= 
+            snapshotArray.sort((a, b) => {
+                if (a.createTime < b.createTime) {
+                    return -1;
+                }
+            }).reverse();
+            printPost(sorted);
+        };
         
         const logOutButton = document.getElementById('logout');
         logOutButton.addEventListener('click', () => {
@@ -79,8 +79,8 @@ window.manejador = {
         
         const creatingPost = (user) => {
             createPost.addEventListener('submit', (e) => {
-                e.preventDefault();
                 snapshotCollection();
+                e.preventDefault();
                 db.collection('posts').add({
                     foto: user.photoURL,
                     user: user.displayName,
