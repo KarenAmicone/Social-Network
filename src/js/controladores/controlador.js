@@ -31,87 +31,162 @@ window.manejador = {
 
     logOut: () => {
         var uid = null;
-        let snapshotArray = [];
-        const db = firebase.firestore();
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                // User is signed in.
-                uid = user.uid;
-                db.collection('posts').onSnapshot(
-                    snapshot => { 
-                        let snapshotT = snapshot;
-                        printPost(snapshotT.docs);
-                        console.log(snapshot.docs);
-
-                    });
-                } else {
-                    uid = null;
-                    window.location.replace('./index.html');
-                }
-            });
-    
-            
-        const logOutButton = document.getElementById('logout');
-        logOutButton.addEventListener('click', () => {
-            firebase.auth().signOut();
-        });
-            
-        const wall = document.getElementById('wall');
-
-        const printPost = (data) => {
-            snapshotArray=[];
-            for (let i = 0; i < data.length; i++) {
-                snapshotDocument = data[i]._document.proto;
-                snapshotArray.push(snapshotDocument);
-            }
-            snapshotArray.sort((a, b) => {
-                if (a.createTime < b.createTime) {
-                    return -1;
-                }
-            }).reverse();
-            wall.innerHTML='';
-            snapshotArray.forEach(doc => {
-                let toPrint = `
-                <article class="post">
-                <p>Fecha: ${doc.createTime}</p>
-                <p>User: ${doc.fields.user.stringValue}</p>
-                <img class= "profile-foto" src="${doc.fields.foto.stringValue}">
-                <p>Categoría: ${doc.fields.title.stringValue}</p>
-                <p>Post: ${doc.fields.content.stringValue}</p>
-                </article>
-                `;
-                wall.insertAdjacentHTML('beforeend', toPrint);
-            });
-        }
-    },
-    
-    perfil: ()=>{
         const db = firebase.firestore();
         const createPost = document.getElementById('create-post');
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 // User is signed in.
                 uid = user.uid;
-                    createPost.addEventListener('submit', (e) => {
-                        e.preventDefault();
+                db.collection('posts').orderBy('createTime', "desc").onSnapshot(
+                    snapshot => {
+                        printPost(snapshot.docs);
+                    });
+
+            createPost.addEventListener('submit', (e) => {
+                e.preventDefault();
+                db.collection('posts').add({
+                        uid: user.uid,
+                        foto: user.photoURL,
+                        user: user.displayName,
+                        content: createPost['content'].value,
+                        title: createPost['title'].value,
+                        createTime: firebase.firestore.Timestamp.fromDate(new Date())
+                    }).then(() => {
+                        createPost.reset();
+                    })
+                    .catch(err => {
+                        console.log(err.message);
+                    });
+            });
+            } else {
+                uid = null;
+                window.location.replace('./index.html');
+            }
+        });
+
+
+        const logOutButton = document.getElementById('logout');
+        logOutButton.addEventListener('click', () => {
+            firebase.auth().signOut();
+        });
+
+        const wall = document.getElementById('wall');
+
+        const printPost = (data) => {
+            wall.innerHTML = '';
+            data.forEach(doc => {
+                let docData= doc.data();
+                console.log(docData.createTime)
+                let toPrint = `
+                <article id="posting" class="post">
+                <p>User: ${docData.user}</p>
+                <img class= "profile-foto" src="${docData.foto}">
+                <p>Categoría: ${docData.title}</p>
+                <p>Post: ${docData.content}</p>
+                </article>
+                `;
+                console.log(toPrint)
+                wall.insertAdjacentHTML('beforeend', toPrint);
+            });
+        }
+    },
+
+    perfil: () => {
+        var uid = null;
+        const db = firebase.firestore();
+        const createPost = document.getElementById('create-post');
+        const wallProfile = document.getElementById('perfil-muro');
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in.
+                uid = user.uid;
+                db.collection('posts').orderBy('createTime', "desc").onSnapshot(
+                    snapshot => {
+                        wallProfile.innerHTML = '';
+                        snapshot.forEach(doc => {
+                            console.log(doc)
+                            let docData = doc.data();
+                            if (uid === docData.uid) {
+                                let perfil =
+                                    `
+                <article id="posting" class="post">
+                <p>User: ${docData.user}</p>
+                <img class= "profile-foto" src="${docData.foto}">
+                <p>Categoría: ${docData.title}</p>
+                <p id= "post-output">Post: ${docData.content}</p>
+                <button onclick= "updatePost('${doc.id}', '${doc.data().content}', '${doc.data().title}')">Editar</button>
+                <button onclick= "deletePost('${doc.id}')" class= "delete-btn">Borrar</button>
+                </article>
+                `;
+                                wallProfile.insertAdjacentHTML('beforeend', perfil);
+                            }
+                        })
+                    });
+                
+                deletePost = (id) => {
+                    let option = confirm("¿Estás segura(o) de borrar este post?");
+                    if(option == true){
+                        db.collection('posts').doc(id).delete().then (()=>{
+                            alert('Este elemento está siendo eliminado');
+                        }).catch((error)=>{
+                            console.error('Error removing document: ', error);
+                        });
+                    } else {
+                        console.log("Cancelado");
+                    }  
+                };
+                const contentInput = document.getElementById('content');
+                const titleInput = document.getElementById('title');
+                const savebtn = document.getElementById('save');
+                let UPDATE = 'Modificar';
+                let CREATE = 'Publicar';
+                let modo = CREATE;
+                let idPost;
+
+                createPost.addEventListener('submit', sendtoFirebase, false);
+                
+                updatePost = (id, content, title) =>{
+                    idPost = id;
+                    contentInput.value=content;
+                    titleInput.value = title;
+                    savebtn.value = UPDATE;
+                    modo = UPDATE;
+                };
+
+                function sendtoFirebase (e) {
+                    e.preventDefault();
+                    switch(modo){
+                        case CREATE:
                         db.collection('posts').add({
-                            id: createPost['idCreated'].value,
+                            uid: user.uid,
                             foto: user.photoURL,
                             user: user.displayName,
                             content: createPost['content'].value,
-                            title: createPost['title'].value
+                            title: createPost['title'].value,
+                            createTime: firebase.firestore.Timestamp.fromDate(new Date())
                         }).then(() => {
                             createPost.reset();
                         })
                         .catch(err => {
                             console.log(err.message);
                         });
-                    })
-                
-                } else {
-                    uid = null;
-                    window.location.replace('./index.html');
+                        break;
+                        case UPDATE:
+                        db.collection('posts').doc(idPost).update({
+                        content: e.target.content.value,
+                            title: e.target.title.value
+                        });
+                        modo=CREATE;
+                        savebtn.value=CREATE;
+                        break;
+                    }
+                    createPost.reset();
                 }
-            })
+
+            } else {
+                uid = null;
+                window.location.replace('./index.html');
+            }
+        })
     }
-}  
+}
