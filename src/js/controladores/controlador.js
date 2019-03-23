@@ -17,7 +17,7 @@ window.manejador = {
             },
             // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
             signInFlow: 'popup',
-            signInSuccessUrl: 'index.html#/muro',
+            signInSuccessUrl: 'index.html#/perfil',
             signInOptions: [
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
                 firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -124,9 +124,15 @@ window.manejador = {
                 uid = user.uid;
 
                 print = () => {
-                    const profile = 
-                    `<p id="user-name" >${user.displayName}</p>
-                    <img id="user-foto" src="${user.photoURL}">`;
+                    const profile =
+                    `
+                    <div class="card">
+                    <img id="user-foto" src="${user.photoURL}" class="card-img-top" alt="Picfood">
+                    <div class="card-body">
+                    <p class="card-text" id="user-name">${user.displayName}</p>
+                    </div>
+                    </div>
+                    `;
                     profileInfo.innerHTML=profile;
                   };
                   print(user);
