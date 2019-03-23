@@ -1,0 +1,14 @@
+* {
+    margin: 0%;
+    border: 0%;
+  }
+
+.container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 0.5fr 3fr 3fr 0.5fr;
+    grid-template-rows: auto;
+    align-items: center;
+    justify-items: center;
+  }
