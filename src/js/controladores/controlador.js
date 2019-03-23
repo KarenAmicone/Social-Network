@@ -116,6 +116,7 @@ window.manejador = {
         const titleInput = document.getElementById('title');
         const savebtn = document.getElementById('save');
         const profileInfo = document.getElementById('profile-info');
+        const logOutButton = document.getElementById('logout');
 
         //Autenticación
         firebase.auth().onAuthStateChanged((user) => {
@@ -124,8 +125,8 @@ window.manejador = {
 
                 print = () => {
                     const profile = 
-                    `<p>${user.displayName}</p>
-                    <img src="${user.photoURL}">`;
+                    `<p id="user-name" >${user.displayName}</p>
+                    <img id="user-foto" src="${user.photoURL}">`;
                     profileInfo.innerHTML=profile;
                   };
                   print(user);
@@ -212,6 +213,10 @@ window.manejador = {
                     }
                     createPost.reset();
                 }
+
+                logOutButton.addEventListener('click', () => {
+                    firebase.auth().signOut();
+                });
 
             } else {
                 uid = null;
