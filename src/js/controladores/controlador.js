@@ -115,11 +115,21 @@ window.manejador = {
         const contentInput = document.getElementById('content');
         const titleInput = document.getElementById('title');
         const savebtn = document.getElementById('save');
+        const profileInfo = document.getElementById('profile-info');
 
         //Autenticación
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 uid = user.uid;
+
+                print = () => {
+                    const profile = 
+                    `<p>${user.displayName}</p>
+                    <img src="${user.photoURL}">`;
+                    profileInfo.innerHTML=profile;
+                  };
+                  print(user);
+
                 db.collection('posts').orderBy('createTime', "desc").onSnapshot(
                     snapshot => {
                         wallProfile.innerHTML = '';
