@@ -67,8 +67,7 @@ como toda la configuración de dependencias y tests de ejemplo:
 ├── .firebase
 │   ├── hosting.c3Jj.cache
 │   └── hosting.cHVibGlj.cache
-├── .vscode
-│   └── settings.json
+│
 ├── functions
 │   ├── .gitignore
 │   ├── index.js
@@ -90,10 +89,7 @@ como toda la configuración de dependencias y tests de ejemplo:
 │   │   ├── muro.html
 │   │   └── perfil.html
 │   └── index.html
-├── test
-│   ├── cipher.spec.js
-│   ├── headless.js
-│   └── index.html
+│
 ├── .DS_Store
 ├── .eslintrc
 ├── .firebaserc
