@@ -17,7 +17,7 @@ window.manejador = {
             },
             // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
             signInFlow: 'popup',
-            signInSuccessUrl: 'index.html#/muro',
+            signInSuccessUrl: 'index.html#/perfil',
             signInOptions: [
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
                 firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -29,60 +29,59 @@ window.manejador = {
 
     },
 
-    logOut: () => {
+    wall: () => {
+        //Variables globales
         var uid = null;
         const db = firebase.firestore();
+
+        //DOM
         const createPost = document.getElementById('create-post');
         const contentInput = document.getElementById('content');
         const titleInput = document.getElementById('title');
+        const logOutButton = document.getElementById('logout');
+        const wall = document.getElementById('wall');
+
+        //Autenticación
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                // User is signed in.
                 uid = user.uid;
                 db.collection('posts').orderBy('createTime', "desc").onSnapshot(
                     snapshot => {
                         printPost(snapshot.docs);
                     });
 
-            createPost.addEventListener('submit', (e) => {
-                e.preventDefault();
-                if(titleInput.value && contentInput.value != null){
-                    db.collection('posts').add({
-                        uid: user.uid,
-                        foto: user.photoURL,
-                        user: user.displayName,
-                        content: createPost['content'].value,
-                        title: createPost['title'].value,
-                        createTime: firebase.firestore.Timestamp.fromDate(new Date())
-                    }).then(() => {
-                        createPost.reset();
-                    })
-                    .catch(err => {
-                        console.log(err.message);
-                    }); 
+                //Función para crear publicaciones
+                createPost.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (titleInput.value && contentInput.value != null) {
+                        db.collection('posts').add({
+                                uid: user.uid,
+                                foto: user.photoURL,
+                                user: user.displayName,
+                                content: createPost['content'].value,
+                                title: createPost['title'].value,
+                                createTime: firebase.firestore.Timestamp.fromDate(new Date())
+                            }).then(() => {
+                                createPost.reset();
+                            })
+                            .catch(err => {
+                                console.log(err.message);
+                            });
                     } else {
                         alert('Para publicar necesitas escribir algo y elegir una categoría. Gracias :D')
                     }
-            });
+                });
             } else {
                 uid = null;
                 window.location.replace('./index.html');
             }
         });
 
-
-        const logOutButton = document.getElementById('logout');
-        logOutButton.addEventListener('click', () => {
-            firebase.auth().signOut();
-        });
-
-        const wall = document.getElementById('wall');
-
+        //Función que pinta en HTML
         const printPost = (data) => {
             wall.innerHTML = '';
             data.forEach(doc => {
-                let docData= doc.data();
-                console.log(docData.createTime)
+                let docData = doc.data();
                 let toPrint = `
                 <article id="posting" class="post">
                 <p>${docData.user}</p>
@@ -91,26 +90,57 @@ window.manejador = {
                 <p>${docData.content}</p>
                 </article>
                 `;
-                console.log(toPrint)
                 wall.insertAdjacentHTML('beforeend', toPrint);
             });
-        }
+        };
+
+        //Función para cerrar sesión
+        logOutButton.addEventListener('click', () => {
+            firebase.auth().signOut();
+        });
     },
 
-    perfil: () => {
+    profile: () => {
+        //Variables globales
         var uid = null;
         const db = firebase.firestore();
+        let UPDATE = 'Modificar';
+        let CREATE = 'Publicar';
+        let modo = CREATE;
+        let idPost;
+
+        //DOM
         const createPost = document.getElementById('create-post');
         const wallProfile = document.getElementById('perfil-muro');
+        const contentInput = document.getElementById('content');
+        const titleInput = document.getElementById('title');
+        const savebtn = document.getElementById('save');
+        const profileInfo = document.getElementById('profile-info');
+        const logOutButton = document.getElementById('logout');
+
+        //Autenticación
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                // User is signed in.
                 uid = user.uid;
+
+                print = () => {
+                    const profile =
+                    `
+                    <div class="card">
+                    <img id="user-foto" src="${user.photoURL}" class="card-img-top" alt="Picfood">
+                    <div class="card-body">
+                    <p class="card-text" id="user-name">${user.displayName}</p>
+                    </div>
+                    </div>
+                    `;
+                    profileInfo.innerHTML=profile;
+                  };
+                  print(user);
+
                 db.collection('posts').orderBy('createTime', "desc").onSnapshot(
                     snapshot => {
                         wallProfile.innerHTML = '';
                         snapshot.forEach(doc => {
-                            console.log(doc)
                             let docData = doc.data();
                             if (uid === docData.uid) {
                                 let perfil =
@@ -128,70 +158,71 @@ window.manejador = {
                             }
                         })
                     });
-                
+
+                //Función que elimina publicaciones
                 deletePost = (id) => {
-                    let option = confirm("¿Estás segura(o) de borrar este post?");
-                    if(option == true){
-                        db.collection('posts').doc(id).delete().then (()=>{
-                            console.log('Este elemento está siendo eliminado');
-                        }).catch((error)=>{
+                    let option = confirm("¿Estás segura(o) que deseas borrar esta publicación?");
+                    if (option == true) {
+                        db.collection('posts').doc(id).delete().then(() => {
+                            console.log('Deleting');
+                        }).catch((error) => {
                             console.error('Error removing document: ', error);
                         });
                     } else {
-                        console.log("Cancelado");
-                    }  
+                        console.log("Canceled");
+                    }
                 };
-                const contentInput = document.getElementById('content');
-                const titleInput = document.getElementById('title');
-                const savebtn = document.getElementById('save');
-                let UPDATE = 'Modificar';
-                let CREATE = 'Publicar';
-                let modo = CREATE;
-                let idPost;
 
-                createPost.addEventListener('submit', sendtoFirebase, false);
-                
-                updatePost = (id, content, title) =>{
+
+                //Función que edita publicaciones 
+                updatePost = (id, content, title) => {
                     idPost = id;
-                    contentInput.value=content;
+                    contentInput.value = content;
                     titleInput.value = title;
                     savebtn.value = UPDATE;
                     modo = UPDATE;
                 };
 
-                function sendtoFirebase (e) {
+                //Función que envía lo agregado y actualizado a firebase
+                createPost.addEventListener('submit', sendtoFirebase, false);
+
+                function sendtoFirebase(e) {
                     e.preventDefault();
-                    switch(modo){
+                    switch (modo) {
                         case CREATE:
-                        if(titleInput.value && contentInput.value != null){
-                        db.collection('posts').add({
-                            uid: user.uid,
-                            foto: user.photoURL,
-                            user: user.displayName,
-                            content: createPost['content'].value,
-                            title: createPost['title'].value,
-                            createTime: firebase.firestore.Timestamp.fromDate(new Date())
-                        }).then(() => {
-                            createPost.reset();
-                        })
-                        .catch(err => {
-                            console.log(err.message);
-                        }); 
-                        } else {
-                            alert('Para publicar necesitas escribir algo y elegir una categoría. Gracias :D')
-                        }
-                        break;
+                            if (titleInput.value && contentInput.value != null) {
+                                db.collection('posts').add({
+                                        uid: user.uid,
+                                        foto: user.photoURL,
+                                        user: user.displayName,
+                                        content: createPost['content'].value,
+                                        title: createPost['title'].value,
+                                        createTime: firebase.firestore.Timestamp.fromDate(new Date())
+                                    }).then(() => {
+                                        createPost.reset();
+                                    })
+                                    .catch(err => {
+                                        console.log(err.message);
+                                    });
+                            } else {
+                                alert('Para publicar necesitas escribir algo y elegir una categoría. Gracias :D')
+                            }
+                            break;
                         case UPDATE:
-                        db.collection('posts').doc(idPost).update({
-                        content: e.target.content.value,
-                            title: e.target.title.value
-                        });
-                        modo=CREATE;
-                        savebtn.value=CREATE;
-                        break;
+                            db.collection('posts').doc(idPost).update({
+                                content: e.target.content.value,
+                                title: e.target.title.value
+                            });
+                            modo = CREATE;
+                            savebtn.value = CREATE;
+                            break;
                     }
                     createPost.reset();
                 }
+
+                logOutButton.addEventListener('click', () => {
+                    firebase.auth().signOut();
+                });
 
             } else {
                 uid = null;
