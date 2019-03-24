@@ -1,19 +1,4 @@
 
-
-@media screen and (min-width :200px){
-    
-   
-   
-  }
-  
-  @media screen and (min-width :480px){
-  
-  }
-  
-  @media screen and (min-width :750px){
-    
-  }
-  
-  @media screen and (min-width :950px){
-   
-  }
+.post{
+  background-color: #ffe6e6;
+}
