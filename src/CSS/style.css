@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+*{
+    background-color: transparent;
+}
+/*muro*/
+#posting{
+    background-image: url("../images/Mantel.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 400px;
+
+    
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 10px;
+   
+
+}
+.profile-foto{
+    height: 90px;
+    max-width: 200px;
+    width: 30%;
+    border-radius: 30%;
+}
+nav{
+    background-image: url("../images/cabeza.png");
+    background-size:cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 150px;
+    
+    
+    
+    
+  
+}
+#logout:hover{
+  
+        background: rgba(0,0,0,0);
+        color:white;
+        box-shadow: inset 0 0 0 3px rgb(160, 30, 30);
+        
+       
+
+        
+}
+.firebaseui-idp-text{
+    background:transparent; 
+  
+}
+.firebaseui-idp-icon-wrapper{
+    background:transparent; 
+  
+}
+
+
+.btn {
+    
+    background:rgb(160, 30, 30);
+    -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+text-shadow: white;
+  -webkit-box-shadow: white;
+  -moz-box-shadow: white;
+  box-shadow: 6px 5px 24px #666666;
+font-family: Arial;
+  color: #fafafa;
+  font-size: 27px;
+  padding: 19px;
+  text-decoration: none;
+
+}
+
+a{
+    font-size: 40px;
+    font-family: 'Lobster', cursive;
+    color: aliceblue;
+   
+    padding: 30px;
+    background-color: transparent;
+    
+}
+
+footer{
+    background-image: url("../images/footer.png"); 
+    background-size:cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+   
+    font-family: 'Quicksand', sans-serif;
+  
+    text-align: center;
+  
+  
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:200px;
+    width:100%;
+    
+    
+    
+   
+    
+}
+h6{
+    background-color: rgba(223, 201, 201, 0.37);
+    font-size: 15px;
+    color: rgb(160, 30, 30);
+    
+    
+
+}
+
+/*perfil*/
+
+/*login*/

@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale= 1.0, minimum-scale= 1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Picfood</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="./CSS/index.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./CSS/style.css">
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="./CSS/index.css">
     <link rel="stylesheet" type="text/css" media="screen" href="./CSS/inicio.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="./CSS/muro.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./CSS/muro.css">-->
+    <link rel="stylesheet" type="text/css" media="screen" href="./CSS/style.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-    <link rel="shortcut icon" href="./imagenes/picfood2.png">
+    <link rel="shortcut icon" href="./images/icon.png">
     <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
@@ -25,38 +27,45 @@
             messagingSenderId: "735993043164"
         }
     </script>
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-    <link rel="stylesheet" type="text/css" media="screen" href="inicio.css">
+   <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="./CSS/inicio.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./CSS/index.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="./CSS/perfil.css">--> 
 </head>
 
 <body>
-        <header>
-            <nav>
-                <a href="#/muro">Muro</a>
-                <a href="#/perfil">Perfil</a>
-                <button id="logout" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">exit_to_app</i></button>
+    <header>
+        <nav>
+           
+            <a href="#/perfil">Perfil</a>
+            <a   href="#/muro">Muro </a>
+            <button id="logout" type="button" class="btn btn-info" data-toggle="button" aria-pressed="false" autocomplete="off">Salir</i></button>
         </nav>
-        </header>
-       
-        
-        
+    </header>
+
 
     <div id="vista">
     </div>
 
-    <footer>
-        <p></p>
-    </footer>
-
+    <footer class ="fotter" >
+  
+            
+          <br>
+          <h6>This page was created by:<br>Diana Gutiéz, Fabiola Juárez, Karen Amicone</h6>
+          <h6> ©PicFood 2019<br> ®PicFood S.A de CV<br> Tel:01882-0422 <br> PicFood@hotmail.com  </h6>
+          
+          
+          </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 </body>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems);
-    });
-</script> -->
 <script src="js/libreria.js"></script>
 <script src="js/controladores/controlador.js"></script>
 <script src="js/rutas.js"></script>
