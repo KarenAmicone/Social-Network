@@ -1,0 +1,50 @@
+ <header>
+     <nav class="color-nav navbar navbar-expand-sm navbar navbar-light fixed-top">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+         </button>
+         <a class="navbar-brand" href="#/perfil"><img id="logo" src="./images/logo.png "></a>
+
+         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                 <li class="nav-item">
+                     <a class="nav-link" href="#/perfil">Perfil <span class="sr-only">(current)</span></a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="#/muro">Muro</a>
+                 </li>
+                 <li class="nav-item">
+                     <a id="logout" class="btn btn-danger" data-toggle="button" aria-pressed="false"
+                         autocomplete="off">Salir</a>
+                 </li>
+             </ul>
+         </div>
+     </nav>
+ </header>
+ <div>
+     <div class="for-desktop-container">
+         <article id="profile-info"></article>
+
+         <article class="form-profile">
+             <form class="form" action="#" id="create-post">
+                 <div class="content-container">
+                     <label for="post-content">3, 2, 1...¡Picfood!</label>
+                     <input id="content" name="postContent" type="text" placeholder="Comparte tus ideas">
+                 </div>
+
+                 <div class="select-container">
+                     <select class="custom-select" name="title" id="title">
+                         <option value="" disabled selected>Elige una categoría</option>
+                         <option value="Receta">Receta</option>
+                         <option value="Reseña">Reseña</option>
+                         <option value="Recomendación">Recomendación</option>
+                         <option value="Foto">Foto</option>
+                     </select>
+                 </div>
+                 <input class="btn btn-dark" value="Publicar" id="save" type="submit"></input>
+             </form>
+            </article>
+     </div>
+     <article id="perfil-muro"></article>
+ </div>

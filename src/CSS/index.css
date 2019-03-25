@@ -1,30 +1,113 @@
 * {
-    margin: 0%;
-    border: 0%;
-  }
+  margin: 0%;
+  border: 0%;
+  font-family: 'PT Serif', serif;
+  font-size: 18px;
+}
+
+#logo{
+  width: 50px;
+  max-width: 100%;
+}
+
+.color-nav{
+  background-color: #e3f2fd;
+  font-size: 20px;
+}
+
+#logout{
+  color: white;
+  font-size: 20px;
+}
+
+li{
+  color: white;
+}
 
 .container {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: 0.5fr 3fr 3fr 0.5fr;
+  grid-template-rows: 15% 45% 40%;
+  align-items: center;
+  justify-items: center;
+  background-color: #e3f2fd;
+}
+
+#icon {
+  margin: auto;
+  grid-column: 2/4;
+  grid-row: 2/3;
+  width: 100%;
+  max-width: 80vw;
+  justify-self: center;
+}
+
+
+#firebaseui-auth-container{
+    grid-column: 2/4; 
+    grid-row: 3/4;
+    max-width: 100%;
+    width: 100%;
+}
+
+@media (min-width: 700px) {
+  .container {
     display: grid;
     width: 100vw;
     height: 100vh;
-    grid-template-columns: 0.5fr 3fr 3fr 0.5fr;
-    grid-template-rows: 10% 30% 60%;
+    grid-template-columns: 2fr 3fr 3fr 2fr;
+    grid-template-rows: 15% 45% 20% 20%;
     align-items: center;
     justify-items: center;
-    background-image: linear-gradient(to bottom, #fff7e9, #f7d9ba, #f1b996, #f1ab95, #f38c8c); 
+    background-color: #e3f2fd;
   }
-
-  img{
+  
+  #icon {
     margin: auto;
     grid-column: 2/4;
     grid-row: 2/3;
-    width: 70vw;
-    height: 30vh;
-
-}
-
+    width: 100%;
+    max-width: 80vw;
+    justify-self: center;
+  }
+  
+  
   #firebaseui-auth-container{
       grid-column: 2/4; 
       grid-row: 3/4;
-
+      max-width: 100%;
+      width: 100%;
   }
+
+}
+
+@media (min-width: 992px) {
+  .container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 1fr;
+    grid-template-rows: 20% 60% 20%;
+    align-items: center;
+    justify-items: center;
+    background-color: #e3f2fd;
+  }
+  
+  #icon {
+    margin: auto;
+    grid-column: 2/4;
+    grid-row: 2/3;
+    width: 100%;
+    justify-self: center;
+  }
+  
+  
+  #firebaseui-auth-container{
+      grid-column: 4/6; 
+      grid-row: 2/3;
+      max-width: 100%;
+      width: 100%;
+  }
+
+}
